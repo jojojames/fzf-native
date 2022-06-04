@@ -23,13 +23,11 @@ find_path(EMACS_INCLUDE_DIR emacs-module.h
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-set(platform_dir ${CMAKE_SYSTEM_NAME})
-
 add_library(fzf-native-module MODULE fzf-native-module.c fzf.c fzf.h)
 set_target_properties(fzf-native-module PROPERTIES
   C_STANDARD 99
   POSITION_INDEPENDENT_CODE ON
   PREFIX ""
-  LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${platform_dir})
+  LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 target_include_directories(fzf-native-module PRIVATE ${EMACS_INCLUDE_DIR})
 target_link_libraries(fzf-native-module PRIVATE Threads::Threads)
